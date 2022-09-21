@@ -1,0 +1,22 @@
+body {
+    background-color: #161621;
+    box-sizing: border-box;
+    display: flex;
+    height: 100vh; /* this line represents 100% of the vh (viewport) so the body takes the entire window*/
+    justify-content: center;
+    align-items: center;
+}
+
+.pixel-container{
+    display: flex;
+    height: 640px;
+    width: 640px;
+    background-color:#dedee0;
+}
+
+.pixel{
+    flex: 0 1 auto;
+    height: 40px;
+    width: 40px;
+    border: 1px solid rgb(182, 33, 33);
+}
