@@ -8,10 +8,10 @@ function onEnter(e)
 }
 
 
-function computePixelDensity(numberOfPixels = 16)
+function computePixelDensity(pixelsBySide = 16)
 {
-    let pixelsSize = CANVAS_SIZE / numberOfPixels;
-    let totalPixels = Math.pow(numberOfPixels, 2);
+    let pixelsSize = CANVAS_SIZE / pixelsBySide;
+    let totalPixels = Math.pow(pixelsBySide, 2);
 
     for (let i = 0; i < totalPixels; i++)
     {
@@ -24,4 +24,22 @@ function computePixelDensity(numberOfPixels = 16)
     }
 }
 
-computePixelDensity(64);
+// let pixelsBySide = 0;
+// let slider = document.getElementById("slider");
+// slider.onchange = function () { 
+//     pixelsBySide = this.value;
+//     computePixelDensity(parseInt(pixelsBySide));
+//     console.log(this.value);
+// }
+
+computePixelDensity();
+
+function resetCanvas()
+{
+    let canvasSize = pixelContainer.childElementCount;
+
+    for (let i = 0; i < canvasSize; i++)
+    {
+        pixelContainer.removeChild(pixelContainer.firstElementChild);
+    }
+}
