@@ -1,3 +1,5 @@
+const CANVAS_SIZE = 640;
+
 let pixelContainer = document.querySelector(".pixel-container");
 
 function onEnter(e)
@@ -5,10 +7,21 @@ function onEnter(e)
     this.style.backgroundColor = "blue";
 }
 
-for (let i = 0; i < 16; i++)
+
+function computePixelDensity(numberOfPixels = 16)
 {
-    let pixel = document.createElement("div");
-    pixel.classList = "pixel";
-    pixelContainer.appendChild(pixel);
-    pixel.addEventListener("mouseenter", onEnter);
+    let pixelsSize = CANVAS_SIZE / numberOfPixels;
+    let totalPixels = Math.pow(numberOfPixels, 2);
+
+    for (let i = 0; i < totalPixels; i++)
+    {
+        let pixel = document.createElement("div");
+        pixel.classList = "pixel";
+        pixel.style.height = `${pixelsSize}px`;
+        pixel.style.width = `${pixelsSize}px`;
+        pixelContainer.appendChild(pixel);
+        pixel.addEventListener("mouseenter", onEnter);
+    }
 }
+
+computePixelDensity(64);
