@@ -1,12 +1,20 @@
 const CANVAS_SIZE = 640;
 
 let pixelContainer = document.querySelector(".pixel-container");
+let pixelsBySide = 0;
 
 function onEnter(e)
 {
-    this.style.backgroundColor = "blue";
+    this.style.backgroundColor = colorPicker.value;
 }
 
+function resetCanvas()
+{
+    let canvasSize = pixelContainer.childElementCount;
+
+    for (let i = 0; i < canvasSize; i++)
+        pixelContainer.removeChild(pixelContainer.firstElementChild);
+}
 
 function computePixelDensity(pixelsBySide = 16)
 {
@@ -24,22 +32,19 @@ function computePixelDensity(pixelsBySide = 16)
     }
 }
 
-// let pixelsBySide = 0;
-// let slider = document.getElementById("slider");
-// slider.onchange = function () { 
-//     pixelsBySide = this.value;
-//     computePixelDensity(parseInt(pixelsBySide));
-//     console.log(this.value);
-// }
-
-computePixelDensity();
-
-function resetCanvas()
+function valueChange()
 {
-    let canvasSize = pixelContainer.childElementCount;
-
-    for (let i = 0; i < canvasSize; i++)
-    {
-        pixelContainer.removeChild(pixelContainer.firstElementChild);
-    }
+    pixelsBySide = slider.value;
+    sliderDisplay.textContent = `${pixelsBySide} x ${pixelsBySide}`;
+    resetCanvas();
+    computePixelDensity(parseInt(pixelsBySide));
 }
+
+let slider = document.getElementById("slider");
+let colorPicker = document.getElementById("color");
+let sliderDisplay = document.getElementById("slider-display");
+let resetButton = document.getElementById("reset");
+
+slider.addEventListener("change", valueChange);
+resetButton.addEventListener("click", valueChange);
+computePixelDensity(); //default behavior
